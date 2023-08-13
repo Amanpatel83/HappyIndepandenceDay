@@ -672,17 +672,25 @@ function showSlides() {
     }
 
     var shareActionWA = function() {
+      gtag('event', 'click', {
+            'event_category': 'interaction',
+            'event_label': 'shareOnWhatsAppClicked',
+      });
+
+      var shareString = "";
+      var whatsappHref;
+      shareString += "*"+sname+"*";
+
       
-      var text = "Check out this awesome website!";
-            
-            // Encode the text for a URL
-            var encodedText = encodeURIComponent("https://amanpatel83.github.io/HappyIndepandenceDay/");
-            
-            // Construct the WhatsApp share URL
-            var whatsappURL = "https://api.whatsapp.com/send?text=" + encodedText;
+      shareString +=" has sent you special wish on *Independence Day* , To see, click on the *magic link*%0A👇👇"
+      shareString +=(window.location.href.split("?")[0] + "?bl=" + sname).replace("#", "").replace(/ /g, "-");
+     
+
+      var whatsappURL = "https://api.whatsapp.com/send?text=" + shareString;
             
             // Open the WhatsApp share URL in a new tab/window
             window.open(whatsappURL, '_blank');
+
     };
     var countDownDate = new Date("August 15, 2023 00:00:00").getTime();
 
